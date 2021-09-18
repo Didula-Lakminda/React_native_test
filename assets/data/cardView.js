@@ -5,6 +5,7 @@ const cardView = [
         name: "Didula",
         description: "this is good vehicle and recomended for you..!",
         vName: "Land Rover",
+        price: 10000,
     },
     {
         id: 2,
@@ -12,6 +13,7 @@ const cardView = [
         name: "Saman",
         description: "this is good vehicle and recomended for you..!",
         vName: "Land Rover",
+        price: 20000,
     },
     {
         id: 3,
@@ -19,6 +21,15 @@ const cardView = [
         name: "Kamal",
         description: "this is good vehicle and recomended for you..!",
         vName: "Land Rover",
+        price: 30000,
+    },
+    {
+        id: 4,
+        image: require('../images/vehicle.jpg'),
+        name: "Nimal",
+        description: "this is good vehicle and recomended for you..!",
+        vName: "Land Rover",
+        price: 40000,
     }
 ];
 

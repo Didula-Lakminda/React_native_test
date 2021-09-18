@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, Text, Image, SafeAreaView, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, Image, ScrollView, TextInput } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -12,7 +12,7 @@ MaterialIcons.loadFont();
 
 export default function Home() {
 
-    const [starRate, setStarRate] = React.useState(0);
+    const [starRate, setStarRate] = React.useState(3);
 
     const onStarPress = (rating) => {
         setStarRate(rating);
@@ -20,13 +20,6 @@ export default function Home() {
 
     return (
         <View style={styles.container}>
-            {/* header */}
-            <SafeAreaView>
-                <View style={styles.headerWrapper}>
-                    <MaterialIcons style={styles.topBarIcon} name="arrow-back-ios" size={24} color={colors.textDark} />
-                    <Text style={styles.topBarText}>Reviews</Text>
-                </View>
-            </SafeAreaView>
 
             {/* titles */}
             <View style={styles.titleWrapper}>
@@ -37,9 +30,11 @@ export default function Home() {
             {/* search */}
             <View style={styles.searchWrapper}>
                 <Feather name="search" size={16} color={colors.textDark} />
-                <View style={styles.search}>
-                    <Text style={styles.searchText}>Search...</Text>
-                </View>
+                <TextInput  
+                        style={styles.textInputView} 
+                        placeholder="Search....."  
+                        // onChangeText={(text) => this.setState({text})}  
+                /> 
             </View>
 
          <ScrollView>
@@ -54,7 +49,7 @@ export default function Home() {
                             <View>
                                 {/* top name and icon */}
                                 <View style={styles.reviewTopWrapper}>
-                                    <MaterialCommunityIcon name="crown" size={14} color={colors.primary} />
+                                    <MaterialCommunityIcon name="crown" size={18} color={colors.primary} />
                                     <Text style={styles.reviewTopText}>{item.name}</Text>
                                 </View>
                                 
@@ -71,10 +66,12 @@ export default function Home() {
                                         {/*star rate  */}
                                         {/* <Feather name="search" size={15} color={colors.textDark} /> */}
                                         <StarRating
-                                            disabled={false}
+                                            disabled={true}
                                             maxStars={5}
                                             rating={starRate}
                                             selectedStar={(rating) => onStarPress(rating)}
+                                            fullStarColor='white'
+                                            starSize={25}    
                                         />
                                 </View>
 
@@ -103,23 +100,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    headerWrapper: {
-        flexDirection: 'row',
-        paddingLeft: 20,
-        alignItems: 'center',
-        backgroundColor: '#fff',
-    },
-    topBarText: {
-        marginLeft: 120,
-        marginTop: 10,
-        marginBottom: 10,
-        fontFamily: 'Montserrat-Bold',
-        fontSize: 15,
-    },
-    topBarIcon: {
-        marginTop: 10,
-        marginBottom: 10,
-    },
     profileImage: {
         width: 40,
         height: 40,
@@ -132,31 +112,23 @@ const styles = StyleSheet.create({
     titleMain: {
         fontFamily: 'Montserrat-Regular',
         fontSize: 16,
-        color: colors.textDark,
+        color: colors.primary,
     },
     titleSub: {
         fontFamily: 'Montserrat-Bold',
         fontSize: 32,
-        color: colors.textDark,
+        color: colors.primary,
         marginTop: 4,
     },
     searchWrapper: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: 20,
-        marginTop: 25,
+        marginTop: 20,
+        marginBottom: 10,
     },
-    search: {
-        flex: 1,
-        marginLeft: 10,
-        borderBottomColor: colors.textLight,
-        borderBottomWidth: 2
-    },
-    searchText: {
-        fontFamily: 'Montserrat-SemiBold',
-        fontSize: 14,
-        marginBottom: 5,
-        color: colors.textLight,
+    textInputView: {
+        color: colors.textLight
     },
     reviewWrapper: {
         paddingHorizontal: 20,
@@ -195,7 +167,7 @@ const styles = StyleSheet.create({
     },
     reviewRate: {
         backgroundColor:colors.primary,
-        paddingHorizontal: 20,
+        paddingHorizontal: 10,
         paddingVertical: 5,
         borderTopRightRadius: 25,
         borderBottomLeftRadius: 25,
@@ -220,5 +192,5 @@ const styles = StyleSheet.create({
         marginTop: -20,
         borderTopRightRadius: 25,
         marginLeft: -138,
-    }
+    },
 })
